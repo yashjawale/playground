@@ -1,12 +1,13 @@
 ---
 interface Props {
   title: string
-  description: string
+  description?: string
 }
 
 const { title, description } = Astro.props
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
+import { SITE_DESCRIPTION } from '../consts'
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ import Header from '../components/Header.astro'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description || SITE_DESCRIPTION} />
   </head>
   <body class="text-foreground bg-basecolor">
     <Header />
