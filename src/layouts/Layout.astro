@@ -6,6 +6,7 @@ interface Props {
 
 const { title, description } = Astro.props
 import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
 ---
 
 <!doctype html>
@@ -22,7 +23,8 @@ import BaseHead from '../components/BaseHead.astro'
     <title>{title}</title>
     <BaseHead title={title} description={description} />
   </head>
-  <body>
+  <body class="text-foreground bg-basecolor">
+    <Header />
     <slot />
   </body>
 </html>
