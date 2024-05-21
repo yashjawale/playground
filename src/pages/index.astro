@@ -9,12 +9,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
   <main class="bg-background">
     <div class="container mx-auto py-20 px-6 sm:px-20 2xl:px-16">
       <h1
-        class="font-title text-5xl md:text-[112px] text-center leading-none px-4 hero-title z-10 pt-7"
+        class="font-title text-5xl md:text-7xl lg:text-[112px] text-center leading-none px-4 hero-title z-10 pt-8"
       >
         Playground
       </h1>
     </div>
   </main>
+
+  <section
+    class="container mx-auto grid md:grid-cols-3 gap-6 lg:gap-8 py-20 px-6 sm:px-20 2xl:px-16"
+  >
+    <Card title="CryptArithmetic Problem" route="/cryptarithmetic" />
+  </section>
 
   <style>
     [astro-icon] {
