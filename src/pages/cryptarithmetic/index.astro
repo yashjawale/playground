@@ -1,17 +1,47 @@
 ---
+import TextInput from '../../components/TextInput.astro'
 import Layout from '../../layouts/Layout.astro'
+import Table from '../../components/Table.astro'
 ---
 
 <Layout title="CryptArithmetic Problem">
-  <main class="container mx-auto py-20 px-6 sm:px-20 2xl:px-16 mt-12">
+  <main class="container mx-auto py-20 px-2 sm:px-20 2xl:px-16 mt-12">
     <h1
-      class="font-title text-4xl md:text-7xl leading-none px-4 md:px-0 z-10 pt-8"
+      class="font-title text-5xl md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
     >
       CryptArithmetic Problem
     </h1>
   </main>
 
-  <section class="container mx-auto py-8 px-6 sm:px-20 2xl:px-16">
-    <h2 class="text-4xl font-light">Enter Details</h2>
+  <section class="container mx-auto px-6 sm:px-20 2xl:px-16 pb-12">
+    <div class="flex flex-col md:flex-row gap-4">
+      <div class="md:w-5/12">
+        <h2 class="text-3xl md:text-5xl font-thin">Enter Details</h2>
+      </div>
+      <div class="md:w-7/12">
+        <form>
+          <TextInput label="First Term" identifier="param1" /> +
+          <TextInput label="Second Term" identifier="param2" /> =
+          <TextInput label="Result Term" identifier="param3" />
+          <button
+            class="bg-foreground text-background px-4 py-3 rounded-lg uppercase text-sm font-bold hover:opacity-80 mt-4"
+            >Solve</button
+          >
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="container mx-auto px-6 sm:px-20 2xl:px-16 flex flex-col gap-3 mb-8"
+  >
+    <h2 class="text-3xl md:text-5xl font-thin">Solutions</h2>
+    <!-- <p class="font-bold text-xl">24 solutions found</p> -->
+    <div class="flex flex-wrap gap-6 py-4">
+      <!-- <Table /> -->
+    </div>
+    <p class="text-3xl text-center font-thin">
+      No Solutions found for given input
+    </p>
   </section>
 </Layout>
