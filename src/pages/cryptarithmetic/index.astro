@@ -2,6 +2,7 @@
 import TextInput from '../../components/TextInput.astro'
 import Layout from '../../layouts/Layout.astro'
 import Table from '../../components/Table.astro'
+import CryptArithmeticSolver from '../../components/react/CryptArithmeticSolver'
 ---
 
 <Layout title="CryptArithmetic Problem">
@@ -18,36 +19,5 @@ import Table from '../../components/Table.astro'
       each letter to satisfy the equation.
     </p>
   </main>
-
-  <section class="container mx-auto px-6 sm:px-20 2xl:px-16 pb-12">
-    <div class="flex flex-col md:flex-row gap-4">
-      <div class="md:w-5/12">
-        <h2 class="text-3xl md:text-5xl font-thin">Enter Details</h2>
-      </div>
-      <div class="md:w-7/12">
-        <form>
-          <TextInput label="First Term" identifier="param1" /> +
-          <TextInput label="Second Term" identifier="param2" /> =
-          <TextInput label="Result Term" identifier="param3" />
-          <button
-            class="bg-foreground text-background px-4 py-3 rounded-lg uppercase text-sm font-bold hover:opacity-80 mt-4"
-            >Solve</button
-          >
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="container mx-auto px-6 sm:px-20 2xl:px-16 flex flex-col gap-3 mb-8"
-  >
-    <h2 class="text-3xl md:text-5xl font-thin">Solutions</h2>
-    <!-- <p class="font-bold text-xl">24 solutions found</p> -->
-    <div class="flex flex-wrap gap-6 py-4">
-      <!-- <Table /> -->
-    </div>
-    <p class="text-2xl md:text-3xl text-center font-thin">
-      No Solutions found for given input
-    </p>
-  </section>
+  <CryptArithmeticSolver client:only="react" />
 </Layout>
