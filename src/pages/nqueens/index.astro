@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PageDescriber from '../../components/PageDescriber.astro'
+import NQueensSolver from '../../components/react/NQueensSolver'
+---
+
+<Layout title="N Queens Problem">
+  <PageDescriber title="N Queens"
+    >Given an integer N, arrange N chess queens on an NxN board such that no two
+    queens threaten each other. Usually solved using Backtracking method.</PageDescriber
+  >
+  <NQueensSolver />
+</Layout>
