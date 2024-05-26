@@ -1,0 +1,14 @@
+---
+const { title } = Astro.props
+---
+
+<main class="container mx-auto py-20 px-2 sm:px-20 2xl:px-16 mt-12">
+  <h1
+    class="font-title text-5xl md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
+  >
+    CryptArithmetic Problem
+  </h1>
+  <p class="font-light py-6 md:w-[70%] px-4 md:px-0">
+    <slot />
+  </p>
+</main>
