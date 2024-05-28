@@ -1,6 +1,15 @@
 import { useState } from 'react'
+import solveNQueens from '../../pages/nqueens/nqueens-algorithm'
 
-const TextInput = ({ label, identifier, value, onChange, placeholder }) => {
+const TextInput = ({
+  label,
+  identifier,
+  value,
+  onChange,
+  placeholder,
+  max,
+  note,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={identifier}>{label}</label>
@@ -12,7 +21,36 @@ const TextInput = ({ label, identifier, value, onChange, placeholder }) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        max={max}
       />
+      {note && <p className="text-sm text-foreground opacity-60">{note}</p>}
+    </div>
+  )
+}
+
+const ChessBoard = ({ solution }) => {
+  const n = solution.length
+
+  return (
+    <div className="flex flex-col">
+      {solution.map((row, index) => {
+        return (
+          <div key={index} className="flex">
+            {row.split('').map((cell, index) => (
+              <div
+                key={index}
+                className="w-8 h-8 flex items-center justify-center"
+              >
+                {cell === 'Q' ? (
+                  <div className="w-7 h-7 bg-primary opacity-80 rounded"></div>
+                ) : (
+                  <div className="w-7 h-7 bg-foreground opacity-20 rounded"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -22,45 +60,18 @@ const NQueensSolver = () => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [solutions, setSolutions] = useState([])
 
+  const [input, setInput] = useState(4)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // setIsProcessing(true)
-    // setSolutions([])
-    // if (param1.length === 0 || param2.length === 0 || param3.length === 0) {
-    //   setSolutionPresent(false)
-    //   setIsProcessing(false)
-    //   return
-    // }
-    // setSolutionPresent(true)
-    // const input = {
-    //   param1: param1,
-    //   param2: param2,
-    //   param3: param3,
-    // }
+    setIsProcessing(true)
+    const n = parseInt(input)
+    const solutions = solveNQueens(n)
+    setSolutions(solutions)
+    setSolutionPresent(solutions.length > 0)
+    setIsProcessing(false)
 
-    // let keyelements = new Set()
-    // Object.keys(input).forEach((string) => {
-    //   for (let i = 0; i < input[string].length; i++) {
-    //     keyelements.add(input[string][i])
-    //   }
-    // })
-
-    // const combinations = generateCombinations(Array.from(keyelements))
-
-    // const solutionsArray = []
-
-    // for (let i = 0; i < combinations.length; i++) {
-    //   if (checkSolution(input, combinations[i])) {
-    //     solutionsArray.push(combinations[i])
-    //   }
-    // }
-
-    // if (solutionsArray.length === 0) {
-    //   setSolutionPresent(false)
-    // }
-
-    // setIsProcessing(false)
-    // setSolutions(solutionsArray)
+    console.log(solutions)
   }
 
   return (
@@ -73,11 +84,13 @@ const NQueensSolver = () => {
           <div className="md:w-7/12">
             <form onSubmit={handleSubmit}>
               <TextInput
-                // value={param1}
-                // onChange={handleChange}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
                 label="Enter N"
-                identifier="param1"
+                identifier="input"
                 placeholder="4"
+                max={10}
+                note={'Value of N limited to 10 to prevent performance issues'}
               />{' '}
               <button className="bg-foreground text-background px-4 py-3 rounded-lg uppercase text-sm font-bold hover:opacity-80 mt-4">
                 Solve
@@ -97,7 +110,10 @@ const NQueensSolver = () => {
         <div className="flex flex-wrap gap-6 py-4">
           {solutionPresent &&
             solutions.map((solution, index) => (
-              <Table key={index} output={solution} />
+              <div key={index} className="flex flex-col gap-4">
+                <p className="font-light text-xl">Solution {index + 1}</p>
+                <ChessBoard solution={solution} />
+              </div>
             ))}
         </div>
         {!solutionPresent && (
