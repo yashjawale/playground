@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TextInput from './common/TextInput'
+import solveCryptarithmetic from '../../pages/cryptarithmetic/cryptarithmetic-algorithm'
 
 const Table = ({ output }) => {
   return (
@@ -20,60 +21,6 @@ const Table = ({ output }) => {
       </tbody>
     </table>
   )
-}
-
-// Logical functions
-function checkSolution(input, key) {
-  let firststring, secondstring, resultstring
-  firststring = input.param1
-    .split('')
-    .map((char) => key[char])
-    .join('')
-  secondstring = input.param2
-    .split('')
-    .map((char) => key[char])
-    .join('')
-  resultstring = input.param3
-    .split('')
-    .map((char) => key[char])
-    .join('')
-  return (
-    parseInt(firststring) + parseInt(secondstring) === parseInt(resultstring)
-  )
-}
-
-function generateCombinations(keys) {
-  const result = []
-  const digits = Array.from({ length: 10 }, (_, i) => i) // [0, 1, 2, ..., 9]
-  function permute(arr, l, r) {
-    if (l === r) {
-      const obj = {}
-      for (let i = 0; i < keys.length; i++) {
-        obj[keys[i]] = arr[i]
-      }
-      result.push(obj)
-    } else {
-      for (let i = l; i <= r; i++) {
-        ;[arr[l], arr[i]] = [arr[i], arr[l]] // Swap
-        permute(arr, l + 1, r)
-        ;[arr[l], arr[i]] = [arr[i], arr[l]] // Swap back
-      }
-    }
-  }
-  function generatePermutations(arr, length, start, current) {
-    if (current.length === length) {
-      permute(current, 0, length - 1)
-      return
-    }
-    for (let i = start; i < arr.length; i++) {
-      current.push(arr[i])
-      generatePermutations(arr, length, i + 1, current)
-      current.pop()
-    }
-  }
-
-  generatePermutations(digits, keys.length, 0, [])
-  return result
 }
 
 const CryptArithmeticSolver = () => {
@@ -108,22 +55,7 @@ const CryptArithmeticSolver = () => {
       param3: param3,
     }
 
-    let keyelements = new Set()
-    Object.keys(input).forEach((string) => {
-      for (let i = 0; i < input[string].length; i++) {
-        keyelements.add(input[string][i])
-      }
-    })
-
-    const combinations = generateCombinations(Array.from(keyelements))
-
-    const solutionsArray = []
-
-    for (let i = 0; i < combinations.length; i++) {
-      if (checkSolution(input, combinations[i])) {
-        solutionsArray.push(combinations[i])
-      }
-    }
+    let solutionsArray = solveCryptarithmetic(input)
 
     if (solutionsArray.length === 0) {
       setSolutionPresent(false)
