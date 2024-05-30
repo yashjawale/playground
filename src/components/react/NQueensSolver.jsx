@@ -1,32 +1,6 @@
 import { useState } from 'react'
+import TextInput from './common/TextInput'
 import solveNQueens from '../../pages/nqueens/nqueens-algorithm'
-
-const TextInput = ({
-  label,
-  identifier,
-  value,
-  onChange,
-  placeholder,
-  max,
-  note,
-}) => {
-  return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={identifier}>{label}</label>
-      <input
-        type="number"
-        id={identifier}
-        name={identifier}
-        className="border-[1px] border-foreground rounded bg-basecolor px-2 py-1"
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        max={max}
-      />
-      {note && <p className="text-sm text-foreground opacity-60">{note}</p>}
-    </div>
-  )
-}
 
 const ChessBoard = ({ solution }) => {
   const n = solution.length
