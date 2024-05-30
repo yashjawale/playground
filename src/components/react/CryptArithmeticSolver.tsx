@@ -2,7 +2,9 @@ import { useState } from 'react'
 import TextInput from './common/TextInput'
 import solveCryptarithmetic from '../../pages/cryptarithmetic/cryptarithmetic-algorithm'
 
-const Table = ({ output }) => {
+type Output = { [index: string]: number }
+
+const Table: React.FC<{ output: Output }> = ({ output }) => {
   return (
     <table className="text-foreground border-2">
       <thead className="bg-background">
@@ -23,23 +25,23 @@ const Table = ({ output }) => {
   )
 }
 
-const CryptArithmeticSolver = () => {
+const CryptArithmeticSolver: React.FC = () => {
   const [param1, setParam1] = useState('')
   const [param2, setParam2] = useState('')
   const [param3, setParam3] = useState('')
 
   const [solutionPresent, setSolutionPresent] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [solutions, setSolutions] = useState([])
+  const [solutions, setSolutions] = useState<Array<Output>>([])
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     if (name === 'param1') setParam1(value.toUpperCase())
     if (name === 'param2') setParam2(value.toUpperCase())
     if (name === 'param3') setParam3(value.toUpperCase())
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsProcessing(true)
     setSolutions([])
@@ -55,7 +57,7 @@ const CryptArithmeticSolver = () => {
       param3: param3,
     }
 
-    let solutionsArray = solveCryptarithmetic(input)
+    let solutionsArray: Array<Output> = solveCryptarithmetic(input)
 
     if (solutionsArray.length === 0) {
       setSolutionPresent(false)

@@ -1,3 +1,13 @@
+interface TextInputProps {
+  label: string
+  identifier: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  placeholder?: string
+  max?: number
+  note?: string
+}
+
 const TextInput = ({
   label,
   identifier,
@@ -6,7 +16,7 @@ const TextInput = ({
   placeholder,
   max,
   note,
-}) => {
+}: TextInputProps) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={identifier}>{label}</label>

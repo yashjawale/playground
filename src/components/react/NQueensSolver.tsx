@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import TextInput from './common/TextInput'
 import solveNQueens from '../../pages/nqueens/nqueens-algorithm'
 
-const ChessBoard = ({ solution }) => {
+interface ChessBoardProps {
+  solution: string[]
+}
+
+const ChessBoard = ({ solution }: ChessBoardProps) => {
   const n = solution.length
 
   return (
@@ -32,14 +36,15 @@ const ChessBoard = ({ solution }) => {
 const NQueensSolver = () => {
   const [solutionPresent, setSolutionPresent] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [solutions, setSolutions] = useState([])
+  const [solutions, setSolutions] = useState<string[][]>([]) // Change the type of solutions state
 
-  const [input, setInput] = useState(4)
+  const [input, setInput] = useState<string>('4') // Change the type of input state
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Add the type for the event parameter
     e.preventDefault()
     setIsProcessing(true)
-    const n = parseInt(input)
+    const n: number = parseInt(input.toString())
     const solutions = solveNQueens(n)
     setSolutions(solutions)
     setSolutionPresent(solutions.length > 0)
