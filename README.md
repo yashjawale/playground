@@ -52,3 +52,9 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+<br/>
+
+---
+
+<a href="https://yashjawale.github.io/" target="_blank"><img style="width: 36px; margin: 12px;" src="https://raw.githubusercontent.com/yashjawale/yashjawale.github.io/main/public/logo.svg" alt="Yash Jawale"/></a>
