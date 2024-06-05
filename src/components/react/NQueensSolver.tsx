@@ -71,9 +71,15 @@ const NQueensSolver = () => {
                 max={10}
                 note={'Value of N limited to 10 to prevent performance issues'}
               />{' '}
-              <button className="bg-foreground text-background px-4 py-3 rounded-lg uppercase text-sm font-bold hover:opacity-80 mt-4">
-                Solve
-              </button>
+              <div className="flex flex-wrap md:flex-nowrap items-center gap-2 mt-4">
+                <button className="bg-foreground text-background px-4 py-3 rounded-lg uppercase text-sm font-bold hover:opacity-80">
+                  Solve
+                </button>
+                <p className="text-sm text-foreground opacity-60">
+                  Computations are performed on your browser. The application
+                  may take time to find solution.
+                </p>
+              </div>
             </form>
           </div>
         </div>
