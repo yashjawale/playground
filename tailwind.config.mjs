@@ -12,7 +12,7 @@ export default {
 				basecolor: 'rgb(var(--color-base) / <alpha-value>)',
 			},
 			fontFamily: {
-				title: ["Silkscreen", ...defaultTheme.fontFamily.sans],
+				title: ["Allura", ...defaultTheme.fontFamily.sans],
 				sans: ["Manrope", ...defaultTheme.fontFamily.sans]
 			},
 		},
