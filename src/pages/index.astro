@@ -2,47 +2,28 @@
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts'
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <main class="bg-background">
-    <div class="container mx-auto py-20 px-6 sm:px-20 2xl:px-16">
-      <h1
-        class="font-title text-4xl md:text-7xl lg:text-[112px] text-center leading-none px-4 hero-title z-10 pt-8 break-all"
-      >
-        Playground
-      </h1>
-    </div>
+  <main class="app-container py-20">
+    <h1
+      class="text-6xl md:text-8xl leading-none pt-20 md:pt-24 break-all"
+    >
+      Playground
+    </h1>
   </main>
 
-  <section
-    class="container mx-auto grid md:grid-cols-3 gap-6 lg:gap-8 py-20 px-6 sm:px-20 2xl:px-16"
-  >
-    <Card title="CryptArithmetic Problem" route="cryptarithmetic" />
-    <Card title="NQueens Problem" route="nqueens" />
+  <section class="app-container pb-32">
+    <div class="grid border-t border-l border-foreground border-opacity-25 md:grid-cols-2">
+      <Card title="CryptArithmetic Problem" route="cryptarithmetic"/>
+      <Card title="NQueens Problem" route="nqueens"/>
+    </div>
   </section>
 
   <style>
-    [astro-icon] {
-      width: 42px;
-    }
-
-    .hero-title {
-      text-shadow:
-        1px 1px #444,
-        -1px -1px white,
-        0px 2px 4px #999;
-      transition: all;
-    }
-
-    .dark .hero-title {
-      text-shadow:
-        1px 1px #444,
-        -1px -1px white,
-        0px 2px 4px #999,
-        0 0 24px white;
-      color: white;
-    }
+      [astro-icon] {
+          width: 42px;
+      }
   </style>
 </Layout>

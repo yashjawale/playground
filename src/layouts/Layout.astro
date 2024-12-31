@@ -1,33 +1,34 @@
 ---
+import Footer from "../components/Footer.astro";
 interface Props {
   title: string
   description?: string
 }
 
-const { title, description } = Astro.props
+const {title, description} = Astro.props
 import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import { SITE_DESCRIPTION } from '../consts'
-import '@fontsource/silkscreen'
+import Navbar from '../components/Navbar.astro'
+import {SITE_DESCRIPTION} from '../consts'
 import '@fontsource-variable/manrope'
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Playground is a collection of interactive simulators for computer science concepts for helping in understanding & experimenting."
-    />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <BaseHead title={title} description={description || SITE_DESCRIPTION} />
-  </head>
-  <body class="text-foreground bg-basecolor">
-    <Header />
-    <slot />
-  </body>
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+    name="description"
+    content="Playground is a collection of interactive simulators for computer science concepts for helping in understanding & experimenting."
+  />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <meta name="generator" content={Astro.generator}/>
+  <title>{title}</title>
+  <BaseHead title={title} description={description || SITE_DESCRIPTION}/>
+</head>
+<body class="text-foreground bg-background">
+<Navbar/>
+<slot/>
+<Footer/>
+</body>
 </html>

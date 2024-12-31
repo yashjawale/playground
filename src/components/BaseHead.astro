@@ -9,11 +9,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const {
-  title,
-  description,
-  image = '/playground/yashportfolio.jpg',
-} = Astro.props
+const { title, description, image = '/playground/playgroundog.jpg' } = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -22,29 +18,12 @@ const {
 <meta name="generator" content={Astro.generator} />
 
 <!-- Favicons -->
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="/playground/apple-touch-icon.png?v=2"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="/playground/favicon-32x32.png?v=2"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="/playground/favicon-16x16.png?v=2"
-/>
-<link rel="manifest" href="/playground/site.webmanifest?v=2" />
-<link rel="shortcut icon" href="/playground/favicon.ico?v=2" />
+<link rel="icon" type="image/png" href="/playground/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/playground/favicon.svg" />
+<link rel="shortcut icon" href="/playground/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/playground/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Yash Jawale" />
-<meta name="application-name" content="Yash Jawale" />
-<meta name="msapplication-TileColor" content="#efefef" />
-<meta name="theme-color" content="#efefef" />
+<link rel="manifest" href="/playground/site.webmanifest" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
