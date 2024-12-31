@@ -9,8 +9,7 @@
     --color-background: 255 255 255;
   }
   :root[class~='dark'] {
-    /* --color-foreground: 211 215 217; */
-    --color-foreground: 215 215 211;
+    --color-foreground: 250 250 250;
     --color-background: 18 18 18;
   }
 }

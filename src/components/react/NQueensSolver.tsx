@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import TextInput from './common/TextInput'
 import solveNQueens from '../../pages/nqueens/nqueens-algorithm'
 
@@ -7,8 +7,6 @@ interface ChessBoardProps {
 }
 
 const ChessBoard = ({ solution }: ChessBoardProps) => {
-  const n = solution.length
-
   return (
     <div className="flex flex-col">
       {solution.map((row, index) => {
