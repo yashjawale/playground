@@ -6,7 +6,7 @@ interface Props {
 
 const {title, description} = Astro.props
 import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
+import Navbar from '../components/Navbar.astro'
 import {SITE_DESCRIPTION} from '../consts'
 import '@fontsource-variable/manrope'
 ---
@@ -26,7 +26,7 @@ import '@fontsource-variable/manrope'
   <BaseHead title={title} description={description || SITE_DESCRIPTION}/>
 </head>
 <body class="text-foreground bg-background">
-<Header/>
+<Navbar/>
 <slot/>
 <!--  TODO: Add footer with link to parent site -->
 </body>
