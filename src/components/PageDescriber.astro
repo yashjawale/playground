@@ -1,10 +1,12 @@
 ---
 const { title } = Astro.props
+import { Icon } from 'astro-icon/components'
 ---
 
-<main class="container mx-auto py-20 px-2 sm:px-20 2xl:px-16 mt-12">
+<main class="app-container py-20 mt-12">
+  <a class="btn-secondary" href="/playground/"><Icon size={20} name="mdi:arrow-left" /> Go Back</a>
   <h1
-    class="font-title text-5xl md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
+    class="text-5xl md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
   >
     {title}
   </h1>

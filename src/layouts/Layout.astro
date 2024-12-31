@@ -8,7 +8,6 @@ const { title, description } = Astro.props
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import { SITE_DESCRIPTION } from '../consts'
-import '@fontsource/allura'
 import '@fontsource-variable/manrope'
 ---
 
@@ -26,7 +25,7 @@ import '@fontsource-variable/manrope'
     <title>{title}</title>
     <BaseHead title={title} description={description || SITE_DESCRIPTION} />
   </head>
-  <body class="text-foreground bg-basecolor">
+  <body class="text-foreground bg-background">
     <Header />
     <slot />
   </body>
