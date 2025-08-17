@@ -6,8 +6,8 @@ type Output = { [index: string]: number }
 
 const Table: React.FC<{ output: Output }> = ({ output }) => {
   return (
-    <table className="text-foreground border-2">
-      <thead className="bg-background">
+    <table className="border-2">
+      <thead>
         <tr className="*:px-4 *:py-2">
           <th>Letter</th>
           <th>Digit</th>

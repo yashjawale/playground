@@ -94,7 +94,7 @@ const NQueensSolver = () => {
           {solutionPresent &&
             solutions.map((solution, index) => (
               <div key={index} className="flex flex-col gap-4">
-                <p className="font-light text-xl">Solution {index + 1}</p>
+                <p className="text-xl">Solution {index + 1}</p>
                 <ChessBoard solution={solution} />
               </div>
             ))}

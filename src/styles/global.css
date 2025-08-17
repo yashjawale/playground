@@ -50,9 +50,9 @@
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-thin;
+  @apply text-3xl md:text-4xl font-light;
 }
 
 .solution-text {
-  @apply text-2xl font-thin pb-12;
+  @apply text-2xl pb-12 font-light;
 }
