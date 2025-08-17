@@ -64,7 +64,7 @@ function generateCombinations(keys: string[]): { [index: string]: number }[] {
 function solveCryptarithmetic(input: {
 	[index: string]: string
 }): Array<{ [index: string]: number }> {
-	let keyelements: Set<string> = new Set()
+	const keyelements: Set<string> = new Set()
 	Object.keys(input).forEach((string) => {
 		for (let i = 0; i < input[string].length; i++) {
 			keyelements.add(input[string][i])

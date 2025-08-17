@@ -6,11 +6,9 @@ interface ChessBoardProps {
 	solution: string[]
 }
 
-const ChessBoard = ({ solution }: ChessBoardProps) => {
-	return (
+const ChessBoard = ({ solution }: ChessBoardProps) => (
 		<div className="flex flex-col">
-			{solution.map((row, index) => {
-				return (
+			{solution.map((row, index) => (
 					<div key={index} className="flex">
 						{row.split('').map((cell, index) => (
 							<div
@@ -25,11 +23,9 @@ const ChessBoard = ({ solution }: ChessBoardProps) => {
 							</div>
 						))}
 					</div>
-				)
-			})}
+				))}
 		</div>
 	)
-}
 
 const NQueensSolver = () => {
 	const [solutionPresent, setSolutionPresent] = useState(false)

@@ -31,7 +31,7 @@ import ThemeSelector from './ThemeSelector.astro'
 			document.documentElement.classList.remove('dark')
 		}
 
-		let theme = localStorage.theme || 'auto'
+		const theme = localStorage.theme || 'auto'
 		document
 			.querySelectorAll(`[data-theme="theme-${theme}"]`)
 			.forEach((el) => el.classList.add('active'))

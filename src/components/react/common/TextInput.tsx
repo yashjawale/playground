@@ -16,8 +16,7 @@ const TextInput = ({
 	placeholder,
 	max,
 	note,
-}: TextInputProps) => {
-	return (
+}: TextInputProps) => (
 		<div className="flex flex-col gap-2">
 			<label htmlFor={identifier}>{label}</label>
 			<input
@@ -37,6 +36,5 @@ const TextInput = ({
 			)}
 		</div>
 	)
-}
 
 export default TextInput

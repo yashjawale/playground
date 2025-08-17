@@ -4,8 +4,7 @@ import solveCryptarithmetic from '../../pages/cryptarithmetic/cryptarithmetic-al
 
 type Output = { [index: string]: number }
 
-const Table: React.FC<{ output: Output }> = ({ output }) => {
-	return (
+const Table: React.FC<{ output: Output }> = ({ output }) => (
 		<table className="border-2">
 			<thead>
 				<tr className="*:px-4 *:py-2">
@@ -23,7 +22,6 @@ const Table: React.FC<{ output: Output }> = ({ output }) => {
 			</tbody>
 		</table>
 	)
-}
 
 const CryptArithmeticSolver: React.FC = () => {
 	const [param1, setParam1] = useState('')
@@ -36,9 +34,9 @@ const CryptArithmeticSolver: React.FC = () => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
-		if (name === 'param1') setParam1(value.toUpperCase())
-		if (name === 'param2') setParam2(value.toUpperCase())
-		if (name === 'param3') setParam3(value.toUpperCase())
+		if (name === 'param1') {setParam1(value.toUpperCase())}
+		if (name === 'param2') {setParam2(value.toUpperCase())}
+		if (name === 'param3') {setParam3(value.toUpperCase())}
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -57,7 +55,7 @@ const CryptArithmeticSolver: React.FC = () => {
 			param3: param3,
 		}
 
-		let solutionsArray: Array<Output> = solveCryptarithmetic(input)
+		const solutionsArray: Array<Output> = solveCryptarithmetic(input)
 
 		if (solutionsArray.length === 0) {
 			setSolutionPresent(false)

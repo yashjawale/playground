@@ -1,5 +1,3 @@
-const FCFSSolver = () => {
-	return <div>FCFSSolver</div>
-}
+const FCFSSolver = () => <div>FCFSSolver</div>
 
 export default FCFSSolver
