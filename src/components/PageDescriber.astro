@@ -4,13 +4,15 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <main class="app-container py-20 mt-12">
-  <a class="btn-secondary" href="/playground/"><Icon size={20} name="mdi:arrow-left" /> Go Back</a>
-  <h1
-    class="text-5xl font-bold md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
-  >
-    {title}
-  </h1>
-  <p class="py-6 md:w-[70%] px-4 md:px-0">
-    <slot />
-  </p>
+	<a class="btn-secondary" href="/playground/"
+		><Icon size={20} name="mdi:arrow-left" /> Go Back</a
+	>
+	<h1
+		class="text-5xl font-bold md:text-7xl leading-none px-4 md:px-0 z-10 pt-8 break-all lg:break-normal"
+	>
+		{title}
+	</h1>
+	<p class="py-6 md:w-[70%] px-4 md:px-0">
+		<slot />
+	</p>
 </main>

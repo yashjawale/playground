@@ -2,28 +2,30 @@
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 
-import {SITE_TITLE, SITE_DESCRIPTION} from '../consts'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <main class="app-container py-20">
-    <h1
-      class="text-6xl font-bold md:text-8xl leading-none pt-20 md:pt-24 break-all"
-    >
-      Playground
-    </h1>
-  </main>
+	<main class="app-container py-20">
+		<h1
+			class="text-6xl font-bold md:text-8xl leading-none pt-20 md:pt-24 break-all"
+		>
+			Playground
+		</h1>
+	</main>
 
-  <section class="app-container pb-32">
-    <div class="grid border-t border-l border-foreground/25 dark:border-foreground-dark/50  md:grid-cols-2">
-      <Card title="CryptArithmetic Problem" route="cryptarithmetic"/>
-      <Card title="NQueens Problem" route="nqueens"/>
-    </div>
-  </section>
+	<section class="app-container pb-32">
+		<div
+			class="grid border-t border-l border-foreground/25 dark:border-foreground-dark/50 md:grid-cols-2"
+		>
+			<Card title="CryptArithmetic Problem" route="cryptarithmetic" />
+			<Card title="NQueens Problem" route="nqueens" />
+		</div>
+	</section>
 
-  <style>
-      [astro-icon] {
-          width: 42px;
-      }
-  </style>
+	<style>
+		[astro-icon] {
+			width: 42px;
+		}
+	</style>
 </Layout>

@@ -3,7 +3,9 @@
 A collection of interactive simulators and demos for computer science concepts.
 
 ## Add new activity
+
 > Requires NodeJS Version 18 or higher
+
 1. Clone this repository and install dependencies
 2. Start development server with `npm run dev`
 3. Create a new directory in the format `src/pages/yourproblem`
@@ -13,11 +15,13 @@ A collection of interactive simulators and demos for computer science concepts.
 7. Submit a PR to merge it into the main branch.
 
 ## Helper Utilites
+
 - Common React components for Input, etc present in `src/components/react/common` directory.
 - CSS Classes for common elements, eg. `btn-primary` present in `src/styles/global.css` file.
 - Feel free to add yours & update this accordingly.
 
 ## Tech Stack
+
 - Site made using [AstroJS](https://astro.build/)
 - Interactive widgets created with [React](https://react.dev/)
 - Styling with [TailwindCSS](https://tailwindcss.com/)
