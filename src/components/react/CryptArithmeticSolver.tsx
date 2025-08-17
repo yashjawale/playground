@@ -5,23 +5,23 @@ import solveCryptarithmetic from '../../pages/cryptarithmetic/cryptarithmetic-al
 type Output = { [index: string]: number }
 
 const Table: React.FC<{ output: Output }> = ({ output }) => (
-		<table className="border-2">
-			<thead>
-				<tr className="*:px-4 *:py-2">
-					<th>Letter</th>
-					<th>Digit</th>
+	<table className="border-2">
+		<thead>
+			<tr className="*:px-4 *:py-2">
+				<th>Letter</th>
+				<th>Digit</th>
+			</tr>
+		</thead>
+		<tbody>
+			{[...Object.entries(output)].map(([key, value]) => (
+				<tr key={key} className="*:px-4 *:py-2">
+					<td className="border-2">{key}</td>
+					<td className="border-2">{value}</td>
 				</tr>
-			</thead>
-			<tbody>
-				{[...Object.entries(output)].map(([key, value]) => (
-					<tr key={key} className="*:px-4 *:py-2">
-						<td className="border-2">{key}</td>
-						<td className="border-2">{value}</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
-	)
+			))}
+		</tbody>
+	</table>
+)
 
 const CryptArithmeticSolver: React.FC = () => {
 	const [param1, setParam1] = useState('')
@@ -34,9 +34,15 @@ const CryptArithmeticSolver: React.FC = () => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
-		if (name === 'param1') {setParam1(value.toUpperCase())}
-		if (name === 'param2') {setParam2(value.toUpperCase())}
-		if (name === 'param3') {setParam3(value.toUpperCase())}
+		if (name === 'param1') {
+			setParam1(value.toUpperCase())
+		}
+		if (name === 'param2') {
+			setParam2(value.toUpperCase())
+		}
+		if (name === 'param3') {
+			setParam3(value.toUpperCase())
+		}
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

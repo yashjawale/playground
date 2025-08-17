@@ -17,24 +17,24 @@ const TextInput = ({
 	max,
 	note,
 }: TextInputProps) => (
-		<div className="flex flex-col gap-2">
-			<label htmlFor={identifier}>{label}</label>
-			<input
-				type="text"
-				id={identifier}
-				name={identifier}
-				className="border border-foreground dark:border-foreground-dark rounded-sm px-3 py-2"
-				value={value}
-				onChange={onChange}
-				placeholder={placeholder}
-				max={max}
-			/>
-			{note && (
-				<p className="text-sm text-foreground dark:text-foreground-dark opacity-60">
-					{note}
-				</p>
-			)}
-		</div>
-	)
+	<div className="flex flex-col gap-2">
+		<label htmlFor={identifier}>{label}</label>
+		<input
+			type="text"
+			id={identifier}
+			name={identifier}
+			className="border border-foreground dark:border-foreground-dark rounded-sm px-3 py-2"
+			value={value}
+			onChange={onChange}
+			placeholder={placeholder}
+			max={max}
+		/>
+		{note && (
+			<p className="text-sm text-foreground dark:text-foreground-dark opacity-60">
+				{note}
+			</p>
+		)}
+	</div>
+)
 
 export default TextInput
