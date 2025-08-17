@@ -8,14 +8,14 @@ const Table: React.FC<{ output: Output }> = ({ output }) => {
   return (
     <table className="text-foreground border-2">
       <thead className="bg-background">
-        <tr className="[&>*]:px-4 [&>*]:py-2">
+        <tr className="*:px-4 *:py-2">
           <th>Letter</th>
           <th>Digit</th>
         </tr>
       </thead>
       <tbody>
         {[...Object.entries(output)].map(([key, value]) => (
-          <tr key={key} className="[&>*]:px-4 [&>*]:py-2">
+          <tr key={key} className="*:px-4 *:py-2">
             <td className="border-2">{key}</td>
             <td className="border-2">{value}</td>
           </tr>

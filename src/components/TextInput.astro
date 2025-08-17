@@ -5,7 +5,7 @@ const { label, identifier, classes } = Astro.props
 <div class="flex flex-col gap-2">
   <label for={identifier}>{label}</label>
   <input
-    class={`border-[1px] border-foreground rounded bg-basecolor px-2 py-1 ${classes}`}
+    class={`border border-foreground rounded-sm bg-basecolor px-2 py-1 ${classes}`}
     type="text"
     name={identifier}
     id={identifier}

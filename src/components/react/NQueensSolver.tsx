@@ -18,9 +18,9 @@ const ChessBoard = ({ solution }: ChessBoardProps) => {
                 className="w-8 h-8 flex items-center justify-center"
               >
                 {cell === 'Q' ? (
-                  <div className="w-7 h-7 bg-primary opacity-80 rounded"></div>
+                  <div className="w-7 h-7 bg-primary opacity-80 rounded-sm"></div>
                 ) : (
-                  <div className="w-7 h-7 bg-foreground opacity-20 rounded"></div>
+                  <div className="w-7 h-7 bg-foreground opacity-20 rounded-sm"></div>
                 )}
               </div>
             ))}
