@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
 ---
 
@@ -20,7 +19,7 @@ import ThemeSelector from './ThemeSelector.astro'
 
 <script is:inline>
 	function reComputeTheme() {
-		console.log('Ran reComputeTheme')
+		// Recompute theme based on localStorage and system preference
 		if (
 			localStorage.theme === 'dark' ||
 			(!('theme' in localStorage) &&
@@ -38,9 +37,9 @@ import ThemeSelector from './ThemeSelector.astro'
 	}
 
 	function addThemeEventListeners() {
-		console.log('Ran addThemeEventListeners')
+		// Add event listeners to theme buttons
 		themeButtons = document.querySelectorAll('.theme-button')
-		console.log(themeButtons.length)
+		// Theme buttons count: themeButtons.length
 		themeButtons.forEach((button) => {
 			button.addEventListener('click', () => {
 				themeButtons.forEach((btn) => btn.classList.remove('active'))
@@ -62,12 +61,12 @@ import ThemeSelector from './ThemeSelector.astro'
 	// Set active class on OS theme change
 	window
 		.matchMedia('(prefers-color-scheme: dark)')
-		.addEventListener('change', (e) => {
+		.addEventListener('change', (_e) => {
 			reComputeTheme()
 		})
 
 	// run recomputeTheme when screen crosses 768px
-	window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+	window.matchMedia('(min-width: 768px)').addEventListener('change', (_e) => {
 		addThemeEventListeners()
 		reComputeTheme()
 	})

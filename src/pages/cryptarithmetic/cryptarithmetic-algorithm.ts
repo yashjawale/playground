@@ -2,16 +2,15 @@ function checkSolution(
 	input: { [index: string]: string },
 	key: { [index: string]: number }
 ): boolean {
-	let firststring: string, secondstring: string, resultstring: string
-	firststring = input.param1
+	const firststring: string = input.param1
 		.split('')
 		.map((char: string) => key[char])
 		.join('')
-	secondstring = input.param2
+	const secondstring: string = input.param2
 		.split('')
 		.map((char: string) => key[char])
 		.join('')
-	resultstring = input.param3
+	const resultstring: string = input.param3
 		.split('')
 		.map((char: string) => key[char])
 		.join('')

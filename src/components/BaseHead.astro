@@ -67,8 +67,8 @@ const {
 	src="https://www.googletagmanager.com/gtag/js?id=G-8Q4KF722K3"></script>
 <script type="text/partytown">
 	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
+	function gtag(...args) {
+		dataLayer.push(args)
 	}
 	gtag('js', new Date())
 

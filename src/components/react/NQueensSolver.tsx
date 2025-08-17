@@ -7,25 +7,22 @@ interface ChessBoardProps {
 }
 
 const ChessBoard = ({ solution }: ChessBoardProps) => (
-		<div className="flex flex-col">
-			{solution.map((row, index) => (
-					<div key={index} className="flex">
-						{row.split('').map((cell, index) => (
-							<div
-								key={index}
-								className="w-8 h-8 flex items-center justify-center"
-							>
-								{cell === 'Q' ? (
-									<div className="w-7 h-7 bg-primary dark:bg-primary-dark opacity-80 rounded-sm"></div>
-								) : (
-									<div className="w-7 h-7 bg-foreground dark:bg-foreground-dark opacity-20 rounded-sm"></div>
-								)}
-							</div>
-						))}
+	<div className="flex flex-col">
+		{solution.map((row, index) => (
+			<div key={index} className="flex">
+				{row.split('').map((cell, index) => (
+					<div key={index} className="w-8 h-8 flex items-center justify-center">
+						{cell === 'Q' ? (
+							<div className="w-7 h-7 bg-primary dark:bg-primary-dark opacity-80 rounded-sm"></div>
+						) : (
+							<div className="w-7 h-7 bg-foreground dark:bg-foreground-dark opacity-20 rounded-sm"></div>
+						)}
 					</div>
 				))}
-		</div>
-	)
+			</div>
+		))}
+	</div>
+)
 
 const NQueensSolver = () => {
 	const [solutionPresent, setSolutionPresent] = useState(false)
@@ -44,7 +41,7 @@ const NQueensSolver = () => {
 		setSolutionPresent(solutions.length > 0)
 		setIsProcessing(false)
 
-		console.log(solutions)
+		// Solutions found: solutions.length
 	}
 
 	return (
