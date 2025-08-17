@@ -1,5 +1,10 @@
 # Playground
 
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Lint, Format, and Type Check](https://github.com/yashjawale/yashjawale.github.io/actions/workflows/lint.yml/badge.svg)](https://github.com/yashjawale/yashjawale.github.io/actions/workflows/lint.yml)
+[![Deploy to GitHub Pages](https://github.com/yashjawale/yashjawale.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/yashjawale/yashjawale.github.io/actions/workflows/deploy.yml)
+
 A collection of interactive simulators and demos for computer science concepts.
 
 ## Add new activity
