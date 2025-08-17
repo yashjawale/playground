@@ -3,20 +3,20 @@ const input = { L: 2, O: 9, G: 6, I: 4, C: 8, P: 0, R: 5 }
 ---
 
 <table class="text-foreground border-2">
-  <thead class="bg-background">
-    <tr class="[&>*]:px-4 [&>*]:py-2">
-      <th>Letter</th>
-      <th>Digit</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      [...Object.entries(input)].map(([key, value]) => (
-        <tr class="[&>*]:px-4 [&>*]:py-2">
-          <td class="border-2">{key}</td>
-          <td class="border-2">{value}</td>
-        </tr>
-      ))
-    }
-  </tbody>
+	<thead class="bg-background">
+		<tr class="*:px-4 *:py-2">
+			<th>Letter</th>
+			<th>Digit</th>
+		</tr>
+	</thead>
+	<tbody>
+		{
+			[...Object.entries(input)].map(([key, value]) => (
+				<tr class="*:px-4 *:py-2">
+					<td class="border-2">{key}</td>
+					<td class="border-2">{value}</td>
+				</tr>
+			))
+		}
+	</tbody>
 </table>

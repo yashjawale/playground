@@ -2,14 +2,18 @@
 import '../styles/global.css'
 
 interface Props {
-  title: string
-  description: string
-  image?: string
+	title: string
+	description: string
+	image?: string
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = '/playground/playgroundog.jpg' } = Astro.props
+const {
+	title,
+	description,
+	image = '/playground/new-og-playground.jpg',
+} = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -18,10 +22,19 @@ const { title, description, image = '/playground/playgroundog.jpg' } = Astro.pro
 <meta name="generator" content={Astro.generator} />
 
 <!-- Favicons -->
-<link rel="icon" type="image/png" href="/playground/favicon-96x96.png" sizes="96x96" />
+<link
+	rel="icon"
+	type="image/png"
+	href="/playground/favicon-96x96.png"
+	sizes="96x96"
+/>
 <link rel="icon" type="image/svg+xml" href="/playground/favicon.svg" />
 <link rel="shortcut icon" href="/playground/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/playground/apple-touch-icon.png" />
+<link
+	rel="apple-touch-icon"
+	sizes="180x180"
+	href="/playground/apple-touch-icon.png"
+/>
 <meta name="apple-mobile-web-app-title" content="Yash Jawale" />
 <link rel="manifest" href="/playground/site.webmanifest" />
 
@@ -49,15 +62,15 @@ const { title, description, image = '/playground/playgroundog.jpg' } = Astro.pro
 
 <!-- Google tag (gtag.js) -->
 <script
-  type="text/partytown"
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-8Q4KF722K3"></script>
+	type="text/partytown"
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-8Q4KF722K3"></script>
 <script type="text/partytown">
-  window.dataLayer = window.dataLayer || []
-  function gtag() {
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
+	window.dataLayer = window.dataLayer || []
+	function gtag(...args) {
+		dataLayer.push(args)
+	}
+	gtag('js', new Date())
 
-  gtag('config', 'G-8Q4KF722K3')
+	gtag('config', 'G-8Q4KF722K3')
 </script>

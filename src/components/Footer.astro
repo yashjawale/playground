@@ -2,18 +2,25 @@
 const today = new Date()
 ---
 
-<footer class="bg-[#eaeaea] dark:bg-[#1a1a1a]">
-  <div class="app-container pt-12 pb-6 flex flex-col md:flex-row gap-8 md:justify-between">
-    <p>
-      Submit a new activity at the <a href="https://github.com/yashjawale/playground/" class="underline underline-offset-4 decoration-2">GitHub Repository</a>
-    </p>
-    <a target="_blank" href="https://yashjawale.github.io/" class="underline underline-offset-4 decoration-2">Main Site</a>
-  </div>
-  <div
-    class="app-container pb-6 text-center"
-  >
-    <p class="text-center md:text-left w-full">
-      &copy; {today.getFullYear()} Yash Jawale
-    </p>
-  </div>
+<footer>
+	<div
+		class="app-container pt-12 pb-6 flex flex-col md:flex-row gap-8 md:justify-between border-t border-foreground/25 dark:border-foreground-dark/25"
+	>
+		<p>
+			Submit a new activity at the <a
+				href="https://github.com/yashjawale/playground/"
+				class="underline underline-offset-4 decoration-2">GitHub Repository</a
+			>
+		</p>
+		<a
+			target="_blank"
+			href="https://yashjawale.github.io/"
+			class="underline underline-offset-4 decoration-2">Main Site</a
+		>
+	</div>
+	<div class="app-container pb-6 text-center">
+		<p class="text-center md:text-left w-full">
+			&copy; {today.getFullYear()} Yash Jawale
+		</p>
+	</div>
 </footer>

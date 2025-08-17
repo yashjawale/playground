@@ -1,39 +1,58 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	--color-foreground: #0c0c0c;
+	--color-foreground-dark: #fafafa;
+	--color-background: #ffffff;
+	--color-background-dark: #2b2b2b;
+	--color-primary: #0784b5;
+	--color-primary-dark: #9bd4e4;
+
+	--font-sans:
+		'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-  :root {
-    --color-primary: 255 184 0;
-    --color-foreground: 31 31 31;
-    --color-background: 255 255 255;
-  }
-  :root[class~='dark'] {
-    --color-foreground: 250 250 250;
-    --color-background: 18 18 18;
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 * {
-  @apply transition-colors duration-75;
+	@apply transition-colors duration-75;
 }
 
 .app-container {
-  @apply container mx-auto px-6 sm:px-20 2xl:px-16;
+	@apply container mx-auto px-6 sm:px-20 2xl:px-16;
 }
 
 .btn-primary {
-  @apply w-fit flex gap-2 bg-foreground text-background px-4 py-2 rounded items-center mt-4 hover:opacity-75;
+	@apply cursor-pointer w-fit flex gap-2 bg-foreground dark:bg-foreground-dark text-background dark:text-background-dark px-4 py-2 rounded-sm items-center mt-4 hover:opacity-75;
 }
 
 .btn-secondary {
-  @apply w-fit flex gap-2 px-4 py-2 items-center mt-4 border-foreground/50 border rounded hover:bg-foreground/5 transition-colors;
+	@apply cursor-pointer w-fit flex gap-2 px-4 py-2 items-center mt-4 border-foreground/50 dark:border-foreground-dark/50 border rounded-sm hover:bg-foreground/5 dark:hover:bg-foreground-dark/5 transition-colors;
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-thin;
+	@apply text-3xl md:text-4xl font-light;
 }
 
 .solution-text {
-  @apply text-2xl font-thin pb-12;
+	@apply text-2xl pb-12 font-light;
 }

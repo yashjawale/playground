@@ -1,81 +1,81 @@
 ---
-import {Icon} from 'astro-icon/components'
-import ThemeSelector from "./ThemeSelector.astro";
+import ThemeSelector from './ThemeSelector.astro'
 ---
 
-<header class="fixed top-0 w-full z-40 bg-background">
-  <nav class="transition-colors duration-300">
-    <div
-      class="app-container flex justify-between items-center py-5"
-    >
-      <a href="/playground/" class="text-foreground"
-      >
-        <img src="/playground/logo.svg" alt="logo" class="dark:brightness-0 dark:invert h-7" />
-      </a>
-      <ThemeSelector/>
-    </div>
-  </nav>
+<header class="fixed top-0 w-full z-40 bg-background dark:bg-background-dark">
+	<nav class="transition-colors duration-300">
+		<div class="app-container flex justify-between items-center py-5">
+			<a href="/playground/" class="text-foreground">
+				<img
+					src="/playground/logo.svg"
+					alt="logo"
+					class="dark:brightness-0 dark:invert h-7"
+				/>
+			</a>
+			<ThemeSelector />
+		</div>
+	</nav>
 </header>
 
 <script is:inline>
-  function reComputeTheme() {
-    console.log('Ran reComputeTheme')
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+	function reComputeTheme() {
+		// Recompute theme based on localStorage and system preference
+		if (
+			localStorage.theme === 'dark' ||
+			(!('theme' in localStorage) &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
 
-    let theme = localStorage.theme || 'auto'
-    document
-      .querySelectorAll(`[data-theme="theme-${theme}"]`)
-      .forEach((el) => el.classList.add('active'))
-  }
+		const theme = localStorage.theme || 'auto'
+		document
+			.querySelectorAll(`[data-theme="theme-${theme}"]`)
+			.forEach((el) => el.classList.add('active'))
+	}
 
-  function addThemeEventListeners() {
-    console.log('Ran addThemeEventListeners')
-    themeButtons = document.querySelectorAll('.theme-button')
-    console.log(themeButtons.length)
-    themeButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        themeButtons.forEach((btn) => btn.classList.remove('active'))
-        button.classList.add('active')
-        if (button.dataset.theme === 'theme-auto') {
-          localStorage.removeItem('theme')
-          reComputeTheme()
-        } else {
-          localStorage.theme = button.dataset.theme.replace('theme-', '')
-          document.documentElement.classList.toggle(
-            'dark',
-            button.dataset.theme === 'theme-dark'
-          )
-        }
-      })
-    })
-  }
+	function addThemeEventListeners() {
+		// Add event listeners to theme buttons
+		themeButtons = document.querySelectorAll('.theme-button')
+		// Theme buttons count: themeButtons.length
+		themeButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				themeButtons.forEach((btn) => btn.classList.remove('active'))
+				button.classList.add('active')
+				if (button.dataset.theme === 'theme-auto') {
+					localStorage.removeItem('theme')
+					reComputeTheme()
+				} else {
+					localStorage.theme = button.dataset.theme.replace('theme-', '')
+					document.documentElement.classList.toggle(
+						'dark',
+						button.dataset.theme === 'theme-dark'
+					)
+				}
+			})
+		})
+	}
 
-  // Set active class on OS theme change
-  window
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (e) => {
-      reComputeTheme()
-    })
+	// Set active class on OS theme change
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', (_e) => {
+			reComputeTheme()
+		})
 
-  // run recomputeTheme when screen crosses 768px
-  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
-    addThemeEventListeners()
-    reComputeTheme()
-  })
+	// run recomputeTheme when screen crosses 768px
+	window.matchMedia('(min-width: 768px)').addEventListener('change', (_e) => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
 
-  reComputeTheme()
+	reComputeTheme()
 
-  // Run on page load
-  window.addEventListener('DOMContentLoaded', () => {
-    addThemeEventListeners()
-    reComputeTheme()
-  })
+	// Run on page load
+	window.addEventListener('DOMContentLoaded', () => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
 </script>
