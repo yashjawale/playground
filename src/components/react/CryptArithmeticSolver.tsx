@@ -103,7 +103,7 @@ const CryptArithmeticSolver: React.FC = () => {
                 <button className="btn-primary">
                   Solve
                 </button>
-                <p className="text-sm text-foreground opacity-60 mt-4">
+                <p className="text-sm opacity-60 mt-4">
                   Computations are performed on your browser. The application
                   may take time to find solution.
                 </p>

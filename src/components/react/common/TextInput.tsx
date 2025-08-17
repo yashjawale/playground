@@ -24,13 +24,13 @@ const TextInput = ({
         type="text"
         id={identifier}
         name={identifier}
-        className="border border-foreground rounded-sm px-3 py-2 font-light"
+        className="border border-foreground dark:border-foreground-dark rounded-sm px-3 py-2 font-light"
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         max={max}
       />
-      {note && <p className="text-sm text-foreground opacity-60">{note}</p>}
+      {note && <p className="text-sm text-foreground dark:text-foreground-dark opacity-60">{note}</p>}
     </div>
   )
 }

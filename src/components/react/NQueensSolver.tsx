@@ -18,9 +18,9 @@ const ChessBoard = ({ solution }: ChessBoardProps) => {
                 className="w-8 h-8 flex items-center justify-center"
               >
                 {cell === 'Q' ? (
-                  <div className="w-7 h-7 bg-primary opacity-80 rounded-sm"></div>
+                  <div className="w-7 h-7 bg-primary dark:bg-primary-dark opacity-80 rounded-sm"></div>
                 ) : (
-                  <div className="w-7 h-7 bg-foreground opacity-20 rounded-sm"></div>
+                  <div className="w-7 h-7 bg-foreground dark:bg-foreground-dark opacity-20 rounded-sm"></div>
                 )}
               </div>
             ))}
@@ -73,7 +73,7 @@ const NQueensSolver = () => {
                 <button className="btn-primary">
                   Solve
                 </button>
-                <p className="text-sm text-foreground opacity-60 mt-4">
+                <p className="text-sm opacity-60 mt-4">
                   Computations are performed on your browser. The application
                   may take time to find solution.
                 </p>
