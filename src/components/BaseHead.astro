@@ -67,8 +67,9 @@ const {
 	src="https://www.googletagmanager.com/gtag/js?id=G-8Q4KF722K3"></script>
 <script type="text/partytown">
 	window.dataLayer = window.dataLayer || []
-	function gtag(...args) {
-		dataLayer.push(args)
+	function gtag() {
+		/* eslint-disable-next-line prefer-rest-params */
+		dataLayer.push(arguments)
 	}
 	gtag('js', new Date())
 
