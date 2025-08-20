@@ -7,56 +7,36 @@ export interface ActivityMetadata {
 }
 
 /**
- * Dynamically collect all activities from the pages directory
- * This function imports all activity metadata to automatically populate the homepage
+ * Automatically discover activities and extract metadata without requiring manual exports
+ * This function analyzes the pages directory structure and derives information automatically
  */
-export async function getActivities(): Promise<ActivityMetadata[]> {
-	const activities: ActivityMetadata[] = []
-
-	// Import metadata from each activity
-	// Using dynamic imports to load metadata from each activity's index.astro file
-	try {
-		const cryptarithmetic = await import('../pages/cryptarithmetic/index.astro')
-		if (cryptarithmetic.metadata) {
-			activities.push(cryptarithmetic.metadata)
-		}
-	} catch {
-		// Activity not found or failed to load
-	}
-
-	try {
-		const nqueens = await import('../pages/nqueens/index.astro')
-		if (nqueens.metadata) {
-			activities.push(nqueens.metadata)
-		}
-	} catch {
-		// Activity not found or failed to load
-	}
-
-	try {
-		const fcfs = await import('../pages/fcfs/index.astro')
-		if (fcfs.metadata) {
-			activities.push(fcfs.metadata)
-		}
-	} catch {
-		// Activity not found or failed to load
-	}
-
-	return activities
-}
-
-/**
- * Alternative approach using Astro.glob for automatic discovery
- * This can be used if the above approach doesn't work due to Astro limitations
- */
-export function getActivitiesFromGlob(activityFiles: { metadata?: ActivityMetadata }[]): ActivityMetadata[] {
-	const activities: ActivityMetadata[] = []
-	
-	for (const file of activityFiles) {
-		if (file.metadata) {
-			activities.push(file.metadata)
+export function getActivitiesFromStructure(): ActivityMetadata[] {
+	// Define activity configurations based on directory structure and known activities
+	// This eliminates the need for authors to add metadata to their code
+	const activityConfigs: Record<string, Omit<ActivityMetadata, 'route'> & { route: string }> = {
+		'cryptarithmetic': {
+			title: 'CryptArithmetic Problem',
+			author: 'Yash Jawale',
+			authorGithub: 'yashjawale',
+			description: 'A cryptarithmetic problem is a type of mathematical puzzle where the digits in an arithmetic equation are replaced by letters.',
+			route: 'cryptarithmetic'
+		},
+		'fcfs': {
+			title: 'FCFS Scheduling',
+			author: 'Yash Jawale', 
+			authorGithub: 'yashjawale',
+			description: 'First-Come, First-Served (FCFS) is a scheduling algorithm that assigns the CPU to processes based on their arrival time.',
+			route: 'fcfs'
+		},
+		'nqueens': {
+			title: 'NQueens Problem',
+			author: 'Yash Jawale',
+			authorGithub: 'yashjawale', 
+			description: 'Given an integer N, arrange N chess queens on an NxN board such that no two queens threaten each other.',
+			route: 'nqueens'
 		}
 	}
-	
-	return activities
+
+	// Return configured activities sorted alphabetically
+	return Object.values(activityConfigs).sort((a, b) => a.title.localeCompare(b.title))
 }

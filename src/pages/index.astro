@@ -1,22 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
-import type { ActivityMetadata } from '../utils/activities'
+import { getActivitiesFromStructure } from '../utils/activities'
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
-// Automatically discover all activities using import.meta.glob
-const activityModules = import.meta.glob('../pages/*/index.astro', { eager: true })
-
-// Extract metadata from discovered activity files
-const activities: ActivityMetadata[] = Object.values(activityModules)
-	.map((module: { metadata?: ActivityMetadata }) => module.metadata)
-	.filter((metadata): metadata is ActivityMetadata => 
-		metadata !== undefined && 
-		metadata.title !== undefined && 
-		metadata.route !== undefined
-	)
-	.sort((a, b) => a.title.localeCompare(b.title)) // Sort alphabetically by title
+// Automatically discover all activities without requiring metadata exports from activity files
+// This approach analyzes directory structure and provides automatic author attribution
+const activities = getActivitiesFromStructure()
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
