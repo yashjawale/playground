@@ -1,8 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
+import type { ActivityMetadata } from '../utils/activities'
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+
+// Automatically discover all activities using import.meta.glob
+const activityModules = import.meta.glob('../pages/*/index.astro', { eager: true })
+
+// Extract metadata from discovered activity files
+const activities: ActivityMetadata[] = Object.values(activityModules)
+	.map((module: { metadata?: ActivityMetadata }) => module.metadata)
+	.filter((metadata): metadata is ActivityMetadata => 
+		metadata !== undefined && 
+		metadata.title !== undefined && 
+		metadata.route !== undefined
+	)
+	.sort((a, b) => a.title.localeCompare(b.title)) // Sort alphabetically by title
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -18,8 +32,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 		<div
 			class="grid border-t border-l border-foreground/25 dark:border-foreground-dark/50 md:grid-cols-2"
 		>
-			<Card title="CryptArithmetic Problem" route="cryptarithmetic" author="Yash Jawale" authorGithub="yashjawale" />
-			<Card title="NQueens Problem" route="nqueens" author="Yash Jawale" authorGithub="yashjawale" />
+			{activities.map((activity) => (
+				<Card 
+					title={activity.title} 
+					route={activity.route} 
+					author={activity.author} 
+					authorGithub={activity.authorGithub} 
+				/>
+			))}
 		</div>
 	</section>
 </Layout>
