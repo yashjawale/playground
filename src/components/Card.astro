@@ -1,5 +1,5 @@
 ---
-const { title, route } = Astro.props
+const { title, route, author, authorGithub } = Astro.props
 ---
 
 <a
@@ -9,4 +9,24 @@ const { title, route } = Astro.props
 	<h2 class="text-2xl overflow-hidden text-ellipsis whitespace-wrap">
 		{title}
 	</h2>
+	{
+		author && (
+			<p class="mt-2 text-sm text-foreground/70 dark:text-foreground-dark/70">
+				by{' '}
+				{authorGithub ? (
+					<a
+						href={`https://github.com/${authorGithub}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline hover:text-foreground dark:hover:text-foreground-dark transition-colors"
+						onclick={(e) => e.stopPropagation()}
+					>
+						{author}
+					</a>
+				) : (
+					author
+				)}
+			</p>
+		)
+	}
 </a>
