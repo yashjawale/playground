@@ -13,7 +13,9 @@ export default defineConfig({
 		baseURL: BASE_URL,
 		viewport: { width: 1280, height: 720 },
 		colorScheme: 'light',
-		reducedMotion: 'reduce',
+		contextOptions: {
+			reducedMotion: 'reduce',
+		},
 		screenshot: 'off',
 		trace: 'retain-on-failure',
 	},

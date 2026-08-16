@@ -27,3 +27,11 @@ updates:
       - dependency-name: 'typescript'
         update-types:
           - 'version-update:semver-major'
+      # eslint 10 can't install until eslint-plugin-jsx-a11y supports it (peer ^3..^9),
+      # and eslint-plugin-astro 3.x requires eslint >=10. Remove when jsx-a11y catches up.
+      - dependency-name: 'eslint'
+        update-types:
+          - 'version-update:semver-major'
+      - dependency-name: 'eslint-plugin-astro'
+        update-types:
+          - 'version-update:semver-major'
