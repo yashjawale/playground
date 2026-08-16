@@ -31,27 +31,15 @@ A collection of interactive simulators and demos for computer science concepts.
 - Interactive widgets created with [React](https://react.dev/)
 - Styling with [TailwindCSS](https://tailwindcss.com/)
 
-## Automated dependency updates
+## Automated security updates
 
-Dependabot PRs are approved and auto-merged once the CI checks pass. For **major version** updates, a comment is left noting the affected packages; they're still merged automatically unless the visual regression check fails. Dependabot also applies a **7-day cooldown** before opening version update PRs (a supply-chain mitigation: a release must be at least 7 days old); security updates are not subject to the cooldown.
+Dependabot **security updates** (CVE fixes) are auto-merged once the build and lint checks pass — set and forget. Regular version updates are not enabled.
 
-- `tests/visual.spec.ts` runs Playwright visual regression checks against the built site (`astro preview`) and compares it to committed baseline screenshots.
-- `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for all updates (major updates get a comment).
-- The `Visual Regression` check runs **only on Dependabot PRs** and blocks them if the site renders differently from the baselines.
+- Enable **Dependabot security updates** under Settings → Code security and analysis.
+- `.github/workflows/automerge.yml` approves and enables auto-merge for Dependabot PRs.
+- The `Lint, Format, and Type Check` workflow (which includes the build) is the merge gate.
 
-Visual regression checks only run on Dependabot PRs, so other PRs won't be blocked by snapshot mismatches. If any changes are made to the site's appearance, we can add the `update-snapshots` label to the PR making the change to refresh the baselines on CI.
-
-> Requires **Allow auto-merge** under Settings → General → Pull Requests for dependabot auto-merge to work.
-
-### Updating baseline screenshots
-
-Baselines are committed snapshots of each page. When you intentionally change the design, add the **`update-snapshots`** label to your PR, the `Update Visual Snapshots` workflow regenerates the baselines on GitHub's runners and pushes them to your branch. Then review the changed PNGs in that job to confirm only expected changes appear.
-
-> Snapshots must be generated on GitHub's runners, not locally: local font rendering differs from CI and causes false failures.
-
-Because the bot's push doesn't trigger CI, manually re-run the `Visual Regression` workflow on the PR that needs it after the snapshots are updated (Actions → Re-run failed jobs, or push a trivial change) to confirm the new baselines pass.
-
-If you can't use the label (e.g. PR from a fork), regenerate locally with `npm run test:e2e:update`, verify the changed PNGs in `tests/visual.spec.ts-snapshots/`, and commit them with your changes.
+> Requires **Allow auto-merge** under Settings → General → Pull Requests, and branch protection on `main` requiring the `lint-and-format` checks.
 
 <br/>
 
