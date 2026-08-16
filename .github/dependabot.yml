@@ -14,11 +14,8 @@ updates:
       # is at least 7 days old (security updates are not affected).
       default-days: 7
     groups:
-      # eslint and its plugins/tooling must bump together (eslint-plugin-astro 3 requires eslint 10)
-      eslint:
+      # All dependencies update together in one grouped PR
+      all:
         patterns:
-          - 'eslint'
-          - 'eslint-plugin-*'
-          - '@typescript-eslint/*'
-          - 'typescript-eslint'
+          - '*'
 
