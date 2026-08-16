@@ -1,0 +1,55 @@
+name: Comment on Visual Changes
+
+on:
+  workflow_run:
+    workflows: ['Visual Regression']
+    types: [completed]
+
+permissions:
+  pull-requests: write
+  actions: read
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Download change marker
+        id: marker
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ github.event.workflow_run.id }}
+          name: visual-changes
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Comment on PR
+        if: steps.marker.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}
+        run: |
+          if [[ -z "${PR_NUMBER}" ]]; then
+            echo "No pull request, skipping"
+            exit 0
+          fi
+          if gh pr view "${PR_NUMBER}" --json comments --jq '.comments[].body' | grep -q "visual-changes:${HEAD_SHA}"; then
+            echo "Comment already exists for this commit, skipping"
+            exit 0
+          fi
+          gh pr comment "${PR_NUMBER}" --body "$(cat <<EOF
+          **Visual changes detected**
+
+          This PR changes how the site renders compared to the committed baselines. Please review the changes to confirm they are intentional.
+
+          View the visual regression report: ${RUN_URL}
+
+          If the changes are intentional:
+          - Maintainers can add the \`update-snapshots\` label to regenerate the baselines on CI.
+          - Fork authors can run \`npm run test:e2e:update\` locally and commit the updated PNGs.
+
+          <!-- visual-changes:${HEAD_SHA} -->
+          EOF
+          )"

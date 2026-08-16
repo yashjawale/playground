@@ -27,14 +27,32 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run visual regression tests
+        id: tests
         run: npm run test:e2e
+        continue-on-error: true
+
+      - name: Fail on visual changes for Dependabot PRs and pushes
+        if: steps.tests.outcome == 'failure' && (github.actor == 'dependabot[bot]' || github.event_name != 'pull_request')
+        run: exit 1
 
       - name: Upload Playwright report
-        if: failure()
+        if: steps.tests.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: |
             playwright-report/
             test-results/
+          retention-days: 7
+
+      - name: Write change marker for non-Dependabot PRs
+        if: steps.tests.outcome == 'failure' && github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        run: mkdir -p marker && echo "visual changes detected" > marker/visual-changes.txt
+
+      - name: Upload change marker
+        if: steps.tests.outcome == 'failure' && github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-changes
+          path: marker/
           retention-days: 7
