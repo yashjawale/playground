@@ -31,6 +31,24 @@ A collection of interactive simulators and demos for computer science concepts.
 - Interactive widgets created with [React](https://react.dev/)
 - Styling with [TailwindCSS](https://tailwindcss.com/)
 
+## Automated dependency updates
+
+Dependabot PRs for **minor and patch** updates are approved and auto-merged once the CI checks pass. Major updates are left for manual review.
+
+- `tests/visual.spec.ts` runs Playwright visual regression checks against the built site (`astro preview`) and compares it to committed baseline screenshots.
+- `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for non-major updates.
+
+> Requires **Allow auto-merge** under Settings → General → Pull Requests for auto-merge to work.
+
+### Updating baseline screenshots
+
+Baselines are committed snapshots of each page. When you intentionally change the design:
+
+1. Make your changes and run `npm run dev` to verify them locally.
+2. Run `npm run test:e2e:update` to regenerate the baseline screenshots.
+3. Review the updated PNGs in `tests/visual.spec.ts-snapshots/` and confirm only the expected changes appear.
+4. Commit the updated PNGs along with your changes. CI compares against these committed baselines.
+
 <br/>
 
 ---
