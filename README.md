@@ -37,7 +37,9 @@ Dependabot PRs for **minor and patch** updates are approved and auto-merged once
 
 - `tests/visual.spec.ts` runs Playwright visual regression checks against the built site (`astro preview`) and compares it to committed baseline screenshots.
 - `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for non-major updates.
-- The `Visual Regression` check **blocks Dependabot PRs** on any visual change (they must render identically). For all other PRs it doesn't block: if visual changes are detected, `.github/workflows/visual-comment.yml` posts a comment recommending manual review (so forked sites with their own content aren't blocked).
+- The `Visual Regression` check runs **only on Dependabot PRs** and blocks them if the site renders differently from the baselines.
+
+Contributors don't need to worry about visual checks — they run only on Dependabot PRs, so your PRs won't be blocked by snapshot mismatches. If you change the site's design, maintainers can add the `update-snapshots` label to your PR to refresh the baselines on CI.
 
 > Requires **Allow auto-merge** under Settings → General → Pull Requests for auto-merge to work.
 
