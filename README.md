@@ -33,10 +33,10 @@ A collection of interactive simulators and demos for computer science concepts.
 
 ## Automated dependency updates
 
-Dependabot PRs are approved and auto-merged once the CI checks pass. For **major version** updates, a comment is left noting the affected packages; they're still merged automatically unless the visual regression check fails.
+Dependabot PRs are approved and auto-merged once the CI checks pass. For **major version** updates, a comment is left noting the affected packages; they're still merged automatically unless the visual regression check fails. Dependabot also applies a **7-day cooldown** before opening version update PRs (a supply-chain mitigation: a release must be at least 7 days old); security updates are not subject to the cooldown.
 
 - `tests/visual.spec.ts` runs Playwright visual regression checks against the built site (`astro preview`) and compares it to committed baseline screenshots.
-- `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for non-major updates.
+- `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for all updates (major updates get a comment).
 - The `Visual Regression` check runs **only on Dependabot PRs** and blocks them if the site renders differently from the baselines.
 
 Visual regression checks only run on Dependabot PRs, so other PRs won't be blocked by snapshot mismatches. If any changes are made to the site's appearance, we can add the `update-snapshots` label to the PR making the change to refresh the baselines on CI.
