@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@astrojs/check": "^0.9.10",
 		"@astrojs/partytown": "^2.1.7",
-		"@astrojs/react": "^6.0.1",
+		"@astrojs/react": "^6.0.2",
 		"@fontsource-variable/inter": "^5.2.6",
 		"@iconify-json/mdi": "^1.1.66",
 		"@tailwindcss/vite": "^4.3.3",
