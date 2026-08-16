@@ -46,6 +46,8 @@ Baselines are committed snapshots of each page. When you intentionally change th
 
 > Snapshots must be generated on GitHub's runners, not locally: local font rendering differs from CI and causes false failures.
 
+To avoid a manual re-push after the bot updates snapshots, set a fine-grained PAT with **Contents: Read and write** access on this repo as the `SNAPSHOT_PAT` repository secret. Without it, the bot's push doesn't trigger CI and you must push a trivial change (or re-run checks) to get a green run on the snapshot commit.
+
 If you can't use the label (e.g. PR from a fork), regenerate locally with `npm run test:e2e:update`, verify the changed PNGs in `tests/visual.spec.ts-snapshots/`, and commit them with your changes.
 
 <br/>
