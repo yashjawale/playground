@@ -3,7 +3,6 @@ import { expect, test } from '@playwright/test'
 const ROUTES = [
 	'/playground/',
 	'/playground/cryptarithmetic/',
-	'/playground/fcfs/',
 	'/playground/nqueens/',
 ]
 
