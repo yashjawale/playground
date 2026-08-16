@@ -1,0 +1,34 @@
+name: Dependabot Auto-merge (cooldown sweep)
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable auto-merge for Dependabot PRs past the cooldown
+        run: |
+          COOLDOWN_DAYS=7
+          prs=$(gh pr list --repo "${GITHUB_REPOSITORY}" --author "app/dependabot" --state open --json number,createdAt --jq -r '.[] | "\(.number) \(.createdAt)"')
+          if [ -z "${prs}" ]; then
+            echo "No open Dependabot PRs"
+            exit 0
+          fi
+          while read -r number created_at; do
+            age_days=$(( ($(date +%s) - $(date -d "${created_at}" +%s)) / 86400 ))
+            if [ "${age_days}" -ge "${COOLDOWN_DAYS}" ]; then
+              echo "Enabling auto-merge on #${number} (age ${age_days}d)"
+              gh pr merge --auto --merge "${number}" || echo "Could not enable auto-merge on #${number}"
+            else
+              echo "Skipping #${number} (age ${age_days}d < ${COOLDOWN_DAYS}d)"
+            fi
+          done <<< "${prs}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

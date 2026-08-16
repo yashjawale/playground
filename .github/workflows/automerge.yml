@@ -35,8 +35,17 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge
-        run: gh pr merge --auto --merge "$PR_URL"
+      - name: Enable auto-merge after cooldown period
+        run: |
+          COOLDOWN_DAYS=7
+          created_at="${{ github.event.pull_request.created_at }}"
+          age_days=$(( ($(date +%s) - $(date -d "${created_at}" +%s)) / 86400 ))
+          if [ "${age_days}" -ge "${COOLDOWN_DAYS}" ]; then
+            echo "PR age ${age_days}d, enabling auto-merge"
+            gh pr merge --auto --merge "$PR_URL"
+          else
+            echo "PR age ${age_days}d < ${COOLDOWN_DAYS}d, cooldown not reached, skipping"
+          fi
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
