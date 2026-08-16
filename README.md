@@ -39,17 +39,17 @@ Dependabot PRs for **minor and patch** updates are approved and auto-merged once
 - `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for non-major updates.
 - The `Visual Regression` check runs **only on Dependabot PRs** and blocks them if the site renders differently from the baselines.
 
-Contributors don't need to worry about visual checks — they run only on Dependabot PRs, so your PRs won't be blocked by snapshot mismatches. If you change the site's design, maintainers can add the `update-snapshots` label to your PR to refresh the baselines on CI.
+Visual regression checks only run on Dependabot PRs, so other PRs won't be blocked by snapshot mismatches. If any changes are made to the site's appearance, we can add the `update-snapshots` label to the PR making the change to refresh the baselines on CI.
 
-> Requires **Allow auto-merge** under Settings → General → Pull Requests for auto-merge to work.
+> Requires **Allow auto-merge** under Settings → General → Pull Requests for dependabot auto-merge to work.
 
 ### Updating baseline screenshots
 
-Baselines are committed snapshots of each page. When you intentionally change the design, add the **`update-snapshots`** label to your PR — the `Update Visual Snapshots` workflow regenerates the baselines on GitHub's runners and pushes them to your branch. Then review the changed PNGs in that job to confirm only expected changes appear.
+Baselines are committed snapshots of each page. When you intentionally change the design, add the **`update-snapshots`** label to your PR, the `Update Visual Snapshots` workflow regenerates the baselines on GitHub's runners and pushes them to your branch. Then review the changed PNGs in that job to confirm only expected changes appear.
 
 > Snapshots must be generated on GitHub's runners, not locally: local font rendering differs from CI and causes false failures.
 
-Because the bot's push doesn't trigger CI, manually re-run the `Visual Regression` workflow on the PR after the snapshots are updated (Actions → Re-run failed jobs, or push a trivial change) to confirm the new baselines pass.
+Because the bot's push doesn't trigger CI, manually re-run the `Visual Regression` workflow on the PR that needs it after the snapshots are updated (Actions → Re-run failed jobs, or push a trivial change) to confirm the new baselines pass.
 
 If you can't use the label (e.g. PR from a fork), regenerate locally with `npm run test:e2e:update`, verify the changed PNGs in `tests/visual.spec.ts-snapshots/`, and commit them with your changes.
 
