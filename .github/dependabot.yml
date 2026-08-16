@@ -9,3 +9,11 @@ updates:
     directory: '/' # Location of package manifests
     schedule:
       interval: 'weekly'
+    groups:
+      # eslint and its plugins/tooling must bump together (eslint-plugin-astro 3 requires eslint 10)
+      eslint:
+        patterns:
+          - 'eslint'
+          - 'eslint-plugin-*'
+          - '@typescript-eslint/*'
+          - 'typescript-eslint'
