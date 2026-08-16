@@ -42,12 +42,11 @@ Dependabot PRs for **minor and patch** updates are approved and auto-merged once
 
 ### Updating baseline screenshots
 
-Baselines are committed snapshots of each page. When you intentionally change the design:
+Baselines are committed snapshots of each page. When you intentionally change the design, add the **`update-snapshots`** label to your PR — the `Update Visual Snapshots` workflow regenerates the baselines on GitHub's runners and pushes them to your branch. Then review the changed PNGs in that job to confirm only expected changes appear.
 
-1. Make your changes and run `npm run dev` to verify them locally.
-2. Run `npm run test:e2e:update` to regenerate the baseline screenshots.
-3. Review the updated PNGs in `tests/visual.spec.ts-snapshots/` and confirm only the expected changes appear.
-4. Commit the updated PNGs along with your changes. CI compares against these committed baselines.
+> Snapshots must be generated on GitHub's runners, not locally: local font rendering differs from CI and causes false failures.
+
+If you can't use the label (e.g. PR from a fork), regenerate locally with `npm run test:e2e:update`, verify the changed PNGs in `tests/visual.spec.ts-snapshots/`, and commit them with your changes.
 
 <br/>
 
