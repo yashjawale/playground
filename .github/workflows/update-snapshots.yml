@@ -48,12 +48,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore: update visual regression baselines"
-          if [[ -n "${SNAPSHOT_PAT}" ]]; then
-            PUSH_URL="https://x-access-token:${SNAPSHOT_PAT}@github.com/${GITHUB_REPOSITORY}.git"
-          else
-            PUSH_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          fi
-          git push "${PUSH_URL}" "HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
-        env:
-          SNAPSHOT_PAT: ${{ secrets.SNAPSHOT_PAT }}
-          GH_TOKEN: ${{ github.token }}
+          git push
