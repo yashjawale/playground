@@ -23,8 +23,19 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge for minor and patch updates
-        if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch'
+      - name: Comment on major version updates
+        if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-major'
+        run: |
+          if gh pr view "$PR_URL" --json comments --jq '.comments[].body' | grep -q "Dependabot auto-merge: major version update"; then
+            echo "Comment already exists, skipping"
+          else
+            gh pr comment "$PR_URL" --body "**Dependabot auto-merge: major version update** — merging automatically: ${{ steps.dependabot-metadata.outputs.dependency-names }}"
+          fi
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}

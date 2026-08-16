@@ -33,7 +33,7 @@ A collection of interactive simulators and demos for computer science concepts.
 
 ## Automated dependency updates
 
-Dependabot PRs for **minor and patch** updates are approved and auto-merged once the CI checks pass. Major updates are left for manual review.
+Dependabot PRs are approved and auto-merged once the CI checks pass. For **major version** updates, a comment is left noting the affected packages; they're still merged automatically unless the visual regression check fails.
 
 - `tests/visual.spec.ts` runs Playwright visual regression checks against the built site (`astro preview`) and compares it to committed baseline screenshots.
 - `.github/workflows/automerge.yml` approves Dependabot PRs and enables auto-merge for non-major updates.
